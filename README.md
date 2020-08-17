@@ -9,12 +9,6 @@ Clone
 
     Clone this repo to your local machine using https://github.com/surajc07/physicians-tracker.git
 
-Setup
-
-     now install npm packages
-
-$ npm install tachyons
-$ npm install bootstrap
 
 
     
