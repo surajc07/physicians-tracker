@@ -1,18 +1,18 @@
 import React from "react";
 import Card from "./Card";
 
-const CardList = ({ candidates }) => {
+const CardList = ({ employees }) => {
   return (
     <div>
-      {candidates.map((user, i) => {
+      {employees.map((user, i) => {
         return (
           <Card
             key={i}
-            id={candidates[i].id}
-            name={candidates[i].name}
-            jobTitle={candidates[i].jobTitle}
-            department={candidates[i].department}
-            email={candidates[i].email}
+            id={employees[i].id}
+            name={employees[i].name}
+            jobTitle={employees[i].jobTitle}
+            department={employees[i].department}
+            email={employees[i].email}
           />
         );
       })}

@@ -1,10 +1,11 @@
-export const candidates = [
+export const employees = [
   {
     id: 1,
     name: "Suraj Chalil",
     jobTitle: "Software Engineer",
     department: "EMSL",
     email: "schalil1@northwell.edu",
+    tasksDue: "3",
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ export const candidates = [
     jobTitle: "Software Engineer",
     department: "EMSL",
     email: "adangelo@northwell.edu",
+    tasksDue: "0",
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ export const candidates = [
     jobTitle: "Director",
     department: "EMSL",
     email: "rmayorga@northwell.edu",
+    tasksDue: "1",
   },
   {
     id: 4,
@@ -26,5 +29,6 @@ export const candidates = [
     jobTitle: "Physician",
     department: "EMSL",
     email: "ecruzen@northwell.edu",
+    tasksDue: "0",
   },
 ];
