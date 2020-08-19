@@ -5,6 +5,10 @@ import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import NewCandidate from "../components/NewCandidate";
+import Comment from "../components/Comment";
+import CommentList from "../components/CommentList";
+import { comments } from "../comments";
+import NewComment from "../components/NewComment";
 
 class App extends Component {
   constructor() {
@@ -12,6 +16,7 @@ class App extends Component {
     this.state = {
       candidates: candidates,
       searchfield: "",
+      comments: comments,
     };
   }
 
@@ -19,7 +24,7 @@ class App extends Component {
     this.setState({ searchfield: event.target.value });
   };
   render() {
-    const { candidates, searchfield } = this.state;
+    const { candidates, searchfield, comments } = this.state;
     const filteredCandidates = candidates.filter((candidate) => {
       return candidate.name.toLowerCase().includes(searchfield.toLowerCase());
     });
@@ -36,6 +41,8 @@ class App extends Component {
         <Scroll>
           <CardList candidates={filteredCandidates} />
         </Scroll>
+        <CommentList comments={ comments} />
+        
       </div>
     );
   }
