@@ -18,6 +18,21 @@ class NewEmployee extends Component {
       event.preventDefault();
       event.stopPropagation();
       event.target.className += " was-validated";
+
+      const { employees, name } = this.state;
+      console.log(form);
+      this.setState({
+        employees: employees.concat([
+          {
+            name: form.name.value,
+            jobTitle: "jobTitle",
+            department: "department",
+            email: "email",
+          },
+        ]),
+      });
+
+      console.log(`Incorporated: ${name} with ${employees.length} employees`);
     }
   };
 
@@ -34,21 +49,6 @@ class NewEmployee extends Component {
       modalIsOpen: !prevState.modalIsOpen,
     }));
   };
-
-  addNewEmployee() {
-    this.setState({
-      employees: this.state.employees.concat([
-        {
-          name: "name",
-          jobTitle: "jobTitle",
-          department: "department",
-          email: "email",
-        },
-      ]),
-    });
-    const { name, employees } = this.state;
-    console.log(`Incorporated: ${name} with ${employees.length} employees`);
-  }
 
   render() {
     return (
@@ -68,7 +68,7 @@ class NewEmployee extends Component {
               onClick={() => this.handleModalShowHide()}
             >
               <Modal.Title>
-                New Candidate <i className="fa fa-poll-people"></i>
+                New Employee <i className="fa fa-poll-people"></i>
               </Modal.Title>
             </Modal.Header>
 
