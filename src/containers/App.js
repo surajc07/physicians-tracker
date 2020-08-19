@@ -14,39 +14,19 @@ import {
   Button,
 } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Comment from "../components/Comment";
 import CommentList from "../components/CommentList";
 import { comments } from "../comments";
-import NewComment from "../components/NewComment";
 
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      candidates: candidates,
-      searchfield: "",
       comments: comments,
-      test: [],
     };
   }
 
 
-  handleComments() {
-    var self = this;
-    // On submit of the form, send a POST request with the data to the server.
-    fetch('http://localhost:3000/test', { 
-        method: 'GET',
-        data: {
-          emptId: self.test
-        }
-      })
-      .then(function(response) {
-        return response.json()
-      }).then(function(body) {
-        console.log(body);
-      });
-  }
 
   onSearchChange = (event) => {
     this.setState({ searchfield: event.target.value });
@@ -68,7 +48,7 @@ class App extends Component {
         </Layout>
 
         <CommentList comments={ comments} />
-        <div>{this.handleComments()}</div>
+        
       </>
     );
   }
