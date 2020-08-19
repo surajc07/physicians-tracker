@@ -17,14 +17,32 @@ class App extends Component {
       candidates: candidates,
       searchfield: "",
       comments: comments,
+      test: [],
     };
+  }
+
+
+  handleComments() {
+    var self = this;
+    // On submit of the form, send a POST request with the data to the server.
+    fetch('http://localhost:3000/test', { 
+        method: 'GET',
+        data: {
+          emptId: self.test
+        }
+      })
+      .then(function(response) {
+        return response.json()
+      }).then(function(body) {
+        console.log(body);
+      });
   }
 
   onSearchChange = (event) => {
     this.setState({ searchfield: event.target.value });
   };
   render() {
-    const { candidates, searchfield, comments } = this.state;
+    const { candidates, searchfield, comments , test} = this.state;
     const filteredCandidates = candidates.filter((candidate) => {
       return candidate.name.toLowerCase().includes(searchfield.toLowerCase());
     });
@@ -42,6 +60,7 @@ class App extends Component {
           <CardList candidates={filteredCandidates} />
         </Scroll>
         <CommentList comments={ comments} />
+        <div>{this.handleComments()}</div>
         
       </div>
     );
