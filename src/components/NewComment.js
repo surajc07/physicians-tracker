@@ -30,7 +30,10 @@ class NewComment extends Component {
     }));
   };
 
+  // this will send the data to the DB, 
+  // which should auto-update whereever they are displayed
   addNewComment() {
+
 
   }
 
