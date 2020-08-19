@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
-import { candidates } from "../candidates";
-import CardList from "../components/CardList";
-import SearchBox from "../components/SearchBox";
-import Scroll from "../components/Scroll";
-import NewCandidate from "../components/NewCandidate";
-import Comment from "../components/Comment";
+import Employee from "../components/Employee";
+import Candidate from "../components/Candidate";
+import NoMatch from "../components/NoMatch";
+import Layout from "../components/Layout";
+import { NavigationBar } from "../components/NavigationBar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CommentList from "../components/CommentList";
 import { comments } from "../comments";
 import NewComment from "../components/NewComment";
