@@ -5,7 +5,7 @@ class Candidate extends Component {
   render() {
     return (
       <div className="tc">
-        <h1 className="f1">Candidates</h1>;
+        <h1 className="display-2">Candidates</h1>
       </div>
     );
   }

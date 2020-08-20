@@ -17,10 +17,11 @@ class App extends Component {
         <Layout>
           <Router>
             <Switch>
+              {/* Add new page here */}
               <Route exact path="/home" component={Home} />
               <Route exact path="/employee" component={Employee} />
               <Route exact path="/candidate" component={Candidate} />
-              <Route exact path="/carddetails" component={CardDetails} />
+              <Route exact path="/detailinfo" component={CardDetails} />
               <Route component={NoMatch} />
             </Switch>
           </Router>

@@ -11,7 +11,7 @@ class NewEmployee extends Component {
       modalIsOpen: true,
     };
   }
-
+  // Did not finish adding new employee
   handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -55,7 +55,7 @@ class NewEmployee extends Component {
       <div className="ph3">
         <button
           type="button"
-          className="btn btn-outline-info btn-rounded waves-effect"
+          className="btn btn-info btn-rounded waves-effect grow bw2 shadow-5"
           onClick={() => this.handleModalShowHide()}
         >
           <i className="fa fa-user-plus mr-1"></i>

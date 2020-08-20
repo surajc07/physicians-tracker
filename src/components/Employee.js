@@ -4,6 +4,7 @@ import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import NewEmployee from "../components/NewEmployee";
+import Table from "./Table";
 
 class Employee extends Component {
   constructor() {
@@ -26,13 +27,14 @@ class Employee extends Component {
       <h1 className="tc">Loading</h1>
     ) : (
       <div className="tc">
-        <h1 className="f1">Employees</h1>
+        <h1 className="display-2">Employees</h1>
         <div className="tr">
           <NewEmployee employees={employees} />
           <SearchBox searchChange={this.onSearchChange} />
         </div>
         <Scroll>
           <CardList employees={filteredEmployees} />
+          <Table employees={filteredEmployees} />
         </Scroll>
       </div>
     );
