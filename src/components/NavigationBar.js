@@ -35,6 +35,7 @@ export const NavigationBar = () => (
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
+          {/* Add New Page/Link here */}
           <Nav.Item>
             <Nav.Link href="/employee">Employees</Nav.Link>
           </Nav.Item>
