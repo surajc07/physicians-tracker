@@ -5,7 +5,7 @@ import Employee from "../components/Employee";
 import Candidate from "../components/Candidate";
 import NoMatch from "../components/NoMatch";
 import Layout from "../components/Layout";
-import CardDetails from "../components/CardDetails";
+import DetailInfo from "../components/DetailInfo";
 import { NavigationBar } from "../components/NavigationBar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -17,11 +17,10 @@ class App extends Component {
         <Layout>
           <Router>
             <Switch>
-              {/* Add new page here */}
               <Route exact path="/home" component={Home} />
               <Route exact path="/employee" component={Employee} />
               <Route exact path="/candidate" component={Candidate} />
-              <Route exact path="/detailinfo" component={CardDetails} />
+              <Route exact path="/detailinfo" component={DetailInfo} />
               <Route component={NoMatch} />
             </Switch>
           </Router>

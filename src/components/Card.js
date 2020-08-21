@@ -29,6 +29,7 @@ class Card extends Component {
       return (
         <div
           className="tc bg-light-red dib br3 pa3 ma2 grow bw2 shadow-5"
+          style={{ cursor: "pointer" }}
           onClick={() => this.goToCardDetails(employeeDetail)}
         >
           <div>

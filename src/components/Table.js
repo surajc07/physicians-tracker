@@ -33,6 +33,7 @@ class Table extends Component {
                   <tr
                     onClick={() => this.goToRowDetails(otherEmployees[i])}
                     className="grow"
+                    style={{ cursor: "pointer" }}
                   >
                     <td>{otherEmployees[i].name}</td>
                     <td>{otherEmployees[i].jobTitle}</td>

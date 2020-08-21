@@ -5,6 +5,7 @@ import SearchBox from "../components/SearchBox";
 import Scroll from "../components/Scroll";
 import NewEmployee from "../components/NewEmployee";
 import Table from "./Table";
+import FadeIn from "react-fade-in";
 
 class Employee extends Component {
   constructor() {
@@ -26,17 +27,19 @@ class Employee extends Component {
     return !employees.length ? (
       <h1 className="tc">Loading</h1>
     ) : (
-      <div className="tc">
-        <h1 className="display-2">Employees</h1>
-        <div className="tr">
-          <NewEmployee employees={employees} />
-          <SearchBox searchChange={this.onSearchChange} />
+      <FadeIn>
+        <div className="tc">
+          <h1 className="display-2">Employees</h1>
+          <div className="tr">
+            <NewEmployee employees={employees} />
+            <SearchBox searchChange={this.onSearchChange} />
+          </div>
+          <Scroll>
+            <CardList employees={filteredEmployees} />
+            <Table employees={filteredEmployees} />
+          </Scroll>
         </div>
-        <Scroll>
-          <CardList employees={filteredEmployees} />
-          <Table employees={filteredEmployees} />
-        </Scroll>
-      </div>
+      </FadeIn>
     );
   }
 }
