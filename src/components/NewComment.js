@@ -9,7 +9,12 @@ class NewComment extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
   handleSubmit(event) {
+    var selectedCardId = localStorage.getItem("selectedCard");
+    //console.log("selectedCardId 2: ", JSON.parse(selectedCardId));
+    var cardObj = JSON.parse(selectedCardId);
+
     event.preventDefault();
     const data = new FormData(event.target);
     
@@ -18,9 +23,11 @@ class NewComment extends Component {
     fetch('http://localhost:3000/users', {
       method: 'POST',
       body: {
-        userId: data.userId,
-        comment: data.comment,
-        status: data.status,
+          comment: {
+          userId: cardObj.id,
+          comment: data.comment,
+          status: data.status,
+        }
         
       }
     });
@@ -29,8 +36,6 @@ class NewComment extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="userId">Enter username to comment on</label>
-        <input id="userId" name="userId" type="number" />
 
         <label htmlFor="comment">Enter your comment</label>
         <input id="comment" name="comment" type="text" />

@@ -43,9 +43,6 @@ class App extends Component {
             </Switch>
           </Router>
         </Layout>
-
-        <CommentList comments={ comments} />
-        
       </>
     );
   }

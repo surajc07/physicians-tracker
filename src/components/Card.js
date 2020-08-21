@@ -10,6 +10,7 @@ class Card extends Component {
   render() {
     const { name, jobTitle, department, email, tasksDue } = this.props;
     const employeeDetail = {
+      id: this.props.id,
       name: name,
       degree: this.props.degree,
       hireDate: this.props.hireDate,

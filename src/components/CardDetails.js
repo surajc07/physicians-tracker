@@ -1,4 +1,5 @@
 import React from "react";
+import CommentList from "./CommentList";
 
 class CardDetails extends React.Component {
   render() {
@@ -14,6 +15,9 @@ class CardDetails extends React.Component {
           <p>Schedule Hours: {cardObj.scheduleHours}</p>
           <p>Business Phone: {cardObj.businessPhone}</p>
           <p>Cell Phone: {cardObj.cellPhone}</p>
+        </div>
+        <div>
+          <CommentList />
         </div>
       </div>
     );
