@@ -12,11 +12,10 @@ class Table extends Component {
     const otherEmployees = employees.filter((employee) =>
       employee.tasksDue.includes("0")
     );
-    console.log("otherEmployees: ", otherEmployees);
     if (Object.keys(otherEmployees).length) {
       return (
         <div>
-          <table className="table table-hover table-dark table-bordered table-striped shadow-5">
+          <table className="table table-dark table-bordered table-striped shadow-5 table-sm">
             <thead>
               <tr>
                 <th scope="col">Name</th>

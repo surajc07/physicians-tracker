@@ -52,15 +52,16 @@ class NewEmployee extends Component {
 
   render() {
     return (
-      <div className="ph3">
+      <div className="btn-group mr-2">
         <button
           type="button"
-          className="btn btn-info btn-rounded waves-effect grow bw2 shadow-5"
+          className="btn btn-sm btn-info btn-rounded waves-effect grow bw2 shadow-5"
           onClick={() => this.handleModalShowHide()}
         >
           <i className="fa fa-user-plus mr-1"></i>
           New Employee
         </button>
+
         <Modal show={this.state.showHide} onHide={this.toggleModal}>
           <Form onSubmit={this.handleSubmit} noValidate>
             <Modal.Header

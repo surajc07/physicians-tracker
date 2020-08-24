@@ -29,10 +29,28 @@ class Employee extends Component {
     ) : (
       <FadeIn>
         <div className="tc">
-          <h1 className="display-2">Employees</h1>
-          <div className="tr">
-            <NewEmployee employees={employees} />
-            <SearchBox searchChange={this.onSearchChange} />
+          <div
+            className="
+            d-flex
+            justify-content-between
+            flex-wrap
+            flex-md-nowrap
+            align-items-center
+            pt-3
+            pb-2
+            mb-3
+            border-bottom"
+          >
+            <h1 className="display-2">Employees</h1>
+            <div
+              className="tr"
+              style={{
+                margin: "15px 0",
+              }}
+            >
+              <NewEmployee employees={employees} />
+              <SearchBox searchChange={this.onSearchChange} />
+            </div>
           </div>
           <Scroll>
             <CardList employees={filteredEmployees} />
