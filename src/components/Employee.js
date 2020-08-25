@@ -18,6 +18,10 @@ class Employee extends Component {
   onSearchChange = (event) => {
     this.setState({ searchfield: event.target.value });
   };
+  handleDelete = (cardId) => {
+    const employees = this.state.employees.filter((c) => c.id !== cardId);
+    this.setState({ employees });
+  };
   render() {
     const { employees, searchfield } = this.state;
     const filteredEmployees = employees.filter((employee) => {
@@ -53,8 +57,11 @@ class Employee extends Component {
             </div>
           </div>
           <Scroll>
-            <CardList employees={filteredEmployees} />
-            <Table employees={filteredEmployees} />
+            <CardList
+              employees={filteredEmployees}
+              onDelete={this.handleDelete}
+            />
+            <Table employees={filteredEmployees} onDelete={this.handleDelete} />
           </Scroll>
         </div>
       </FadeIn>

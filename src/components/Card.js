@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import "./Card.css";
-import UpdateEmployee from "./UpdateEmployee";
-import DeleteEmployee from "./DeleteEmployee";
 
 class Card extends Component {
   goToCardDetails = (employeeDetail) => {
@@ -70,8 +68,15 @@ class Card extends Component {
               </div>
             </div>
           </div>
-          <div className="deleteEmployee">
-            <DeleteEmployee />
+
+          <div className="deleteButton">
+            <button
+              type="button"
+              className="btn btn-sm btn-danger btn-rounded waves-effect grow bw2 shadow-5"
+              onClick={() => this.props.onDelete(employeeInfo.id)}
+            >
+              <i className="fa fa-user-times"></i>
+            </button>
           </div>
         </div>
       );

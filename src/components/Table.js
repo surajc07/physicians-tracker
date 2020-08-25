@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import "./Table.css";
 
 class Table extends Component {
-  goToRowDetails = (otherEmployees) => {
+  handleRowDetails = (otherEmployees) => {
     //console.log("employeeDetail: ", otherEmployees);
     localStorage.setItem("selectedCard", JSON.stringify(otherEmployees));
     this.props.history.push("/detailinfo");
@@ -15,7 +16,7 @@ class Table extends Component {
     if (Object.keys(otherEmployees).length) {
       return (
         <div>
-          <table className="table table-dark table-bordered table-striped shadow-5 table-sm">
+          <table className="table table-dark table-bordered table-striped shadow-5 table-sm table-hover">
             <thead>
               <tr>
                 <th scope="col">Name</th>
@@ -30,8 +31,7 @@ class Table extends Component {
               return (
                 <tbody key={i}>
                   <tr
-                    onClick={() => this.goToRowDetails(otherEmployees[i])}
-                    className="grow"
+                    onClick={() => this.handleRowDetails(otherEmployees[i])}
                     style={{ cursor: "pointer" }}
                   >
                     <td>{otherEmployees[i].name}</td>
