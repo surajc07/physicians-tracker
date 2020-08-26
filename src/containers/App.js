@@ -1,28 +1,61 @@
 import React, { Component } from "react";
 import "./App.css";
-import Home from "../components/Home";
-import Employee from "../components/Employee";
-import Candidate from "../components/Candidate";
-import NoMatch from "../components/NoMatch";
-import Layout from "../components/Layout";
-import DetailInfo from "../components/DetailInfo";
-import { NavigationBar } from "../components/NavigationBar";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "../components/Home/Home";
+import Employee from "../components/Employee/Employee";
+import Candidate from "../components/Candidate/Candidate";
+import Layout from "../components/Scroll/Layout";
+import DetailInfo from "../components/DetailInfo/DetailInfo";
+import Signin from "../components/Signin/Signin";
+import Register from "../components/Register/Register";
+import Navigation from "../components/Navigation/Navigation";
+import { BrowserRouter as Router } from "react-router-dom";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      route: "signin",
+      isSignedIn: false,
+    };
+  }
+
+  onRouteChange = (route) => {
+    if (route === "signout") {
+      this.setState({ isSignedIn: false });
+    } else if (
+      route === "home" ||
+      route === "employee" ||
+      route === "candidate" ||
+      route === "detailinfo"
+    ) {
+      this.setState({ isSignedIn: true });
+    }
+    this.setState({ route });
+  };
+
   render() {
+    const { isSignedIn, route } = this.state;
     return (
       <>
-        <NavigationBar />
+        <Navigation
+          isSignedIn={isSignedIn}
+          onRouteChange={this.onRouteChange}
+        />
         <Layout>
           <Router>
-            <Switch>
-              <Route exact path="/home" component={Home} />
-              <Route exact path="/employee" component={Employee} />
-              <Route exact path="/candidate" component={Candidate} />
-              <Route exact path="/detailinfo" component={DetailInfo} />
-              <Route component={NoMatch} />
-            </Switch>
+            {route === "home" ? (
+              <Home />
+            ) : route === "employee" ? (
+              <Employee onRouteChange={this.onRouteChange} />
+            ) : route === "detailinfo" ? (
+              <DetailInfo />
+            ) : route === "candidate" ? (
+              <Candidate />
+            ) : route === "signin" || route === "signout" ? (
+              <Signin onRouteChange={this.onRouteChange} />
+            ) : (
+              <Register onRouteChange={this.onRouteChange} />
+            )}
           </Router>
         </Layout>
       </>

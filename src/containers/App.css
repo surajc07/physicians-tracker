@@ -2,3 +2,11 @@ h1 {
   font-family: "Eczar", serif;
   color: white;
 }
+
+.App {
+  text-align: center;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
