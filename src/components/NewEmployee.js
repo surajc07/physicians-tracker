@@ -11,13 +11,28 @@ class NewEmployee extends Component {
       modalIsOpen: true,
     };
   }
-
+  // Did not finish adding new employee
   handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
       event.target.className += " was-validated";
+
+      const { employees, name } = this.state;
+      console.log(form);
+      this.setState({
+        employees: employees.concat([
+          {
+            name: form.name.value,
+            jobTitle: "jobTitle",
+            department: "department",
+            email: "email",
+          },
+        ]),
+      });
+
+      console.log(`Incorporated: ${name} with ${employees.length} employees`);
     }
   };
 
@@ -35,32 +50,18 @@ class NewEmployee extends Component {
     }));
   };
 
-  addNewEmployee() {
-    this.setState({
-      employees: this.state.employees.concat([
-        {
-          name: "name",
-          jobTitle: "jobTitle",
-          department: "department",
-          email: "email",
-        },
-      ]),
-    });
-    const { name, employees } = this.state;
-    console.log(`Incorporated: ${name} with ${employees.length} employees`);
-  }
-
   render() {
     return (
-      <div className="ph3">
+      <div className="btn-group mr-2">
         <button
           type="button"
-          className="btn btn-outline-info btn-rounded waves-effect"
+          className="btn btn-sm btn-info btn-rounded waves-effect grow bw2 shadow-5"
           onClick={() => this.handleModalShowHide()}
         >
           <i className="fa fa-user-plus mr-1"></i>
           New Employee
         </button>
+
         <Modal show={this.state.showHide} onHide={this.toggleModal}>
           <Form onSubmit={this.handleSubmit} noValidate>
             <Modal.Header
@@ -68,7 +69,7 @@ class NewEmployee extends Component {
               onClick={() => this.handleModalShowHide()}
             >
               <Modal.Title>
-                New Candidate <i className="fa fa-poll-people"></i>
+                New Employee <i className="fa fa-poll-people"></i>
               </Modal.Title>
             </Modal.Header>
 

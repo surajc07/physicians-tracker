@@ -7,9 +7,10 @@ class Scroll extends Component {
       <div
         style={{
           overflowY: "scroll",
-          border: "5px solid black",
+          border: "2px solid black",
           height: "800px",
         }}
+        className="shadow-5"
       >
         {this.props.children}
       </div>
