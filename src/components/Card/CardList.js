@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "./Card";
+import CardInfo from "./CardInfo";
 
 class CardList extends Component {
   constructor() {
@@ -10,33 +10,40 @@ class CardList extends Component {
     this.onRouteChange = this.onRouteChange.bind(this);
   }
   onRouteChange(route) {
-    this.setState({ route: route });
+    this.setState({ route });
   }
 
   render() {
     const { employees, onDelete, onRouteChange } = this.props;
     return (
-      <div>
-        {employees.map((user, i) => {
-          return (
-            <Card
-              key={i}
-              id={employees[i].id}
-              name={employees[i].name}
-              jobTitle={employees[i].jobTitle}
-              department={employees[i].department}
-              email={employees[i].email}
-              tasksDue={employees[i].tasksDue}
-              degree={employees[i].degree}
-              hireDate={employees[i].hireDate}
-              scheduleHours={employees[i].scheduleHours}
-              businessPhone={employees[i].businessPhone}
-              cellPhone={employees[i].cellPhone}
-              onDelete={onDelete}
-              onRouteChange={onRouteChange}
-            />
-          );
-        })}
+      <div className="row">
+        <div className="col-sm-12">
+          {employees.map((user, i) => {
+            return (
+              <CardInfo
+                key={i}
+                empId={employees[i].empId}
+                empName={employees[i].empFirstNm + " " + employees[i].empLastNm}
+                empDegree={employees[i].empDegree}
+                empStatus={employees[i].empJobStatus}
+                empHireDtm={employees[i].empHireDtm}
+                empJobTitle={employees[i].empJobTitle}
+                empJobTitleCode={employees[i].empJobTitleCode}
+                empSchedulePct={employees[i].empSchedulePct}
+                empScheduleType={employees[i].empScheduleType}
+                empScheduleHrs={employees[i].empScheduleHrs}
+                empBusUnit={employees[i].empBusUnit}
+                empDeptDesc={employees[i].empDeptDesc}
+                empEmail={employees[i].empEmail}
+                empTaskId={employees[i].empTaskId}
+                empTaskName={employees[i].empTaskName}
+                empTaskStatus={employees[i].empTaskStatus}
+                onDelete={onDelete}
+                onRouteChange={onRouteChange}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   }

@@ -1,5 +1,8 @@
 var express = require("express");
 var app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 app.get("/", function (req, res) {
   var sql = require("mssql");
@@ -20,12 +23,15 @@ app.get("/", function (req, res) {
     var request = new sql.Request();
 
     // query to the database and get the records
-    request.query("select * from dbo.Employees", function (err, recordset) {
-      if (err) console.log(err);
+    request.query(
+      "select E.*,T.empTaskId,T.empTaskCreatedDtm,T.empTaskName,T.empTaskStatus,T.empTaskUpdatedDtm from dbo.Employees E (nolock) left join dbo.empTasks T (nolock) on E.empId = T.empId",
+      function (err, recordset) {
+        if (err) console.log(err);
 
-      // send records as a response
-      res.send(recordset);
-    });
+        // send records as a response
+        res.send(recordset);
+      }
+    );
   });
 });
 

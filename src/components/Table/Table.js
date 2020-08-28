@@ -3,17 +3,19 @@ import { withRouter } from "react-router-dom";
 import "./Table.css";
 
 class Table extends Component {
-  handleRowDetails = (otherEmployees) => {
-    //console.log("employeeDetail: ", otherEmployees);
-    localStorage.setItem("selectedCard", JSON.stringify(otherEmployees));
-    this.props.history.push(`/detailinfo/${otherEmployees.id}`);
+  handleRowDetails = (employeeDetail) => {
+    //console.log("employeeDetail: ", employeeDetail);
+    localStorage.setItem("selectedCard", JSON.stringify(employeeDetail));
+    this.props.history.push(`/detailinfo/`);
   };
   render() {
-    const { employees } = this.props;
-    const otherEmployees = employees.filter((employee) =>
-      employee.tasksDue.includes("0")
+    var { employees } = this.props;
+    // Let's filter the array to only show employees with no tasks/completed tasks on table
+    employees = employees.filter(
+      (employee) =>
+        !employee.empTaskId || employee.empTaskStatus.includes("Complete")
     );
-    if (Object.keys(otherEmployees).length) {
+    if (Object.keys(employees).length) {
       return (
         <div>
           <table className="table table-dark table-bordered table-striped shadow-5 table-sm table-hover">
@@ -23,25 +25,29 @@ class Table extends Component {
                 <th scope="col">Job Title</th>
                 <th scope="col">Department</th>
                 <th scope="col">Email</th>
-                <th scope="col">Tasks Due</th>
+                <th scope="col">Task Name</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
 
-            {otherEmployees.map((user, i) => {
+            {employees.map((user, i) => {
               return (
                 <tbody key={i}>
                   <tr
                     onClick={() => {
-                      this.handleRowDetails(otherEmployees[i]);
+                      this.handleRowDetails(employees[i]);
                       this.props.onRouteChange("detailinfo");
                     }}
                     style={{ cursor: "pointer" }}
                   >
-                    <td>{otherEmployees[i].name}</td>
-                    <td>{otherEmployees[i].jobTitle}</td>
-                    <td>{otherEmployees[i].department}</td>
-                    <td>{otherEmployees[i].email}</td>
-                    <td>{otherEmployees[i].tasksDue}</td>
+                    <td>
+                      {employees[i].empFirstNm + " " + employees[i].empLastNm}
+                    </td>
+                    <td>{employees[i].empJobTitle}</td>
+                    <td>{employees[i].empDeptDesc}</td>
+                    <td>{employees[i].empEmail}</td>
+                    <td>{employees[i].empTaskName}</td>
+                    <td>{employees[i].empTaskStatus}</td>
                   </tr>
                 </tbody>
               );

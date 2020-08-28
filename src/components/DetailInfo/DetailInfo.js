@@ -5,26 +5,28 @@ class DetailInfo extends Component {
   render() {
     var selectedCardId = localStorage.getItem("selectedCard");
     //console.log("selectedCardId 2: ", JSON.parse(selectedCardId));
-    var cardObj = JSON.parse(selectedCardId);
+    var selectedCardObj = JSON.parse(selectedCardId);
     return (
       <FadeIn>
         <div className="list-group shadow-5">
-          <h1 className="tc">{cardObj.name}'s Additional Information</h1>
+          <h1 className="tc">
+            {selectedCardObj.name}'s Additional Information
+          </h1>
           <div style={{ color: "black" }}>
             <li className="list-group-item list-group-item-action list-group-item-info">
-              Degree: {cardObj.degree}
+              Degree: {selectedCardObj.degree}
             </li>
             <li className="list-group-item list-group-item-action list-group-item-info">
-              Hire Date: {cardObj.hireDate}
+              Hire Date: {selectedCardObj.hireDate}
             </li>
             <li className="list-group-item list-group-item-action list-group-item-info">
-              Schedule Hours: {cardObj.scheduleHours}
+              Schedule Hours: {selectedCardObj.scheduleHours}
             </li>
             <li className="list-group-item list-group-item-action list-group-item-info">
-              Business Phone: {cardObj.businessPhone}
+              Business Phone: {selectedCardObj.businessPhone}
             </li>
             <li className="list-group-item list-group-item-action list-group-item-info">
-              Cell Phone: {cardObj.cellPhone}
+              Cell Phone: {selectedCardObj.cellPhone}
             </li>
           </div>
         </div>

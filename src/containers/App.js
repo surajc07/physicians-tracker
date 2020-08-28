@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "../components/Home/Home";
 import Employee from "../components/Employee/Employee";
 import Candidate from "../components/Candidate/Candidate";
-import Layout from "../components/Scroll/Layout";
+import Layout from "../components/Navigation/Layout";
 import DetailInfo from "../components/DetailInfo/DetailInfo";
 import Signin from "../components/Signin/Signin";
 import Register from "../components/Register/Register";
@@ -41,23 +41,23 @@ class App extends Component {
           isSignedIn={isSignedIn}
           onRouteChange={this.onRouteChange}
         />
-        <Layout>
-          <Router>
-            {route === "home" ? (
-              <Home />
-            ) : route === "employee" ? (
-              <Employee onRouteChange={this.onRouteChange} />
-            ) : route === "detailinfo" ? (
-              <DetailInfo />
-            ) : route === "candidate" ? (
-              <Candidate />
-            ) : route === "signin" || route === "signout" ? (
-              <Signin onRouteChange={this.onRouteChange} />
-            ) : (
-              <Register onRouteChange={this.onRouteChange} />
-            )}
-          </Router>
-        </Layout>
+        {/* <Layout> */}
+        <Router>
+          {route === "home" ? (
+            <Home />
+          ) : route === "employee" ? (
+            <Employee onRouteChange={this.onRouteChange} />
+          ) : route === "detailinfo" ? (
+            <DetailInfo />
+          ) : route === "candidate" ? (
+            <Candidate />
+          ) : route === "signin" || route === "signout" ? (
+            <Signin onRouteChange={this.onRouteChange} />
+          ) : (
+            <Register onRouteChange={this.onRouteChange} />
+          )}
+        </Router>
+        {/* </Layout> */}
       </>
     );
   }
