@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import "./CardInfo.css";
-import { employees } from "../Employee/employees";
 
 class CardInfo extends Component {
   handleCardDetails = (employeeDetail) => {
@@ -55,7 +54,7 @@ class CardInfo extends Component {
         <div
           className={
             "cardContainer dib br3 pa1 ma2 grow bw2 grow shadow-5 " +
-            (isStatusIncomplete ? "bg-danger" : "bg-warning")
+            (isStatusIncomplete ? "bg-light-red" : "bg-light-yellow")
           }
           style={{
             cursor: "pointer",

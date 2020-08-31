@@ -7,6 +7,7 @@ class Scroll extends Component {
       <div
         style={{
           overflowY: "scroll",
+          overflowX: "hidden",
           border: "2px solid black",
           height: "800px",
         }}

@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "../components/Home/Home";
 import Employee from "../components/Employee/Employee";
 import Candidate from "../components/Candidate/Candidate";
-import Layout from "../components/Navigation/Layout";
+// import Layout from "../components/Navigation/Layout";
 import DetailInfo from "../components/DetailInfo/DetailInfo";
 import Signin from "../components/Signin/Signin";
 import Register from "../components/Register/Register";
