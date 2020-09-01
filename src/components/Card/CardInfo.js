@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import "./CardInfo.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 class CardInfo extends Component {
   handleCardDetails = (employeeDetail) => {
@@ -122,7 +124,7 @@ class CardInfo extends Component {
               className="btn btn-sm btn-danger btn-rounded waves-effect grow bw2 shadow-5"
               onClick={() => this.props.onDelete(employeeInfo.empId)}
             >
-              <i className="fa fa-user-times"></i>
+              <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
             </button>
           </div>
         </div>

@@ -14,9 +14,8 @@ class Employee extends Component {
     super();
     this.state = {
       employees: [],
-      searchfield: "",
       currentPage: 1,
-      resultsPerPage: 50,
+      resultsPerPage: 25,
       holder: [],
       value: "",
     };
@@ -43,11 +42,8 @@ class Employee extends Component {
           fullName.toLowerCase().search(this.state.value.toLowerCase()) !== -1
         );
       });
-      this.setState({ employees: updatedList });
-      this.setState({ currentPage: 1 });
+      this.setState({ employees: updatedList, currentPage: 1 });
     });
-
-    // this.setState({ searchfield: event.target.value });
   };
 
   handleDelete = (cardId) => {
@@ -57,7 +53,11 @@ class Employee extends Component {
 
   //change page
   onPaginateChange = (pageNumber) => {
-    this.setState({ currentPage: pageNumber });
+    if (pageNumber === "previous")
+      this.setState({ currentPage: this.state.currentPage - 1 });
+    else if (pageNumber === "next")
+      this.setState({ currentPage: this.state.currentPage + 1 });
+    else this.setState({ currentPage: pageNumber });
   };
 
   render() {
@@ -122,6 +122,7 @@ class Employee extends Component {
               resultsPerPage={resultsPerPage}
               totalResults={employees.length}
               onPaginateChange={this.onPaginateChange}
+              currentPage={currentPage}
             />
           </Scroll>
         </div>
