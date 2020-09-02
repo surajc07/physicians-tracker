@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./containers/App";
-import * as serviceWorker from "./serviceWorker";
+import App from "../src/containers/App";
+import * as serviceWorker from "../src/serviceWorker";
 import "tachyons";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.min.css";

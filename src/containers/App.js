@@ -14,8 +14,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      route: "signin",
-      isSignedIn: false,
+      route: "home",
+      isSignedIn: true,
     };
   }
 
@@ -36,7 +36,7 @@ class App extends Component {
   render() {
     const { isSignedIn, route } = this.state;
     return (
-      <>
+      <div className="appContainer">
         <Navigation
           isSignedIn={isSignedIn}
           onRouteChange={this.onRouteChange}
@@ -58,7 +58,7 @@ class App extends Component {
           )}
         </Router>
         {/* </Layout> */}
-      </>
+      </div>
     );
   }
 }

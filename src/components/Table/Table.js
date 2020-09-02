@@ -6,7 +6,7 @@ class Table extends Component {
   handleRowDetails = (employeeDetail) => {
     //console.log("employeeDetail: ", employeeDetail);
     localStorage.setItem("selectedCard", JSON.stringify(employeeDetail));
-    this.props.history.push(`/detailinfo/`);
+    this.props.history.push(`/`);
   };
   render() {
     var { employees } = this.props;

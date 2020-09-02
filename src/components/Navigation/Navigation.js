@@ -33,7 +33,10 @@ const Navigation = ({ onRouteChange, isSignedIn }) => {
     return (
       <Styles>
         <Navbar expand="lg">
-          <Navbar.Brand onClick={() => onRouteChange("home")}>
+          <Navbar.Brand
+            onClick={() => onRouteChange("home")}
+            style={{ cursor: "pointer" }}
+          >
             Physicians Tracking Tool
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -51,13 +54,14 @@ const Navigation = ({ onRouteChange, isSignedIn }) => {
                 </Nav.Link>
               </Nav.Item>
             </Nav>
+            {/* No Sign In/Out options needed
             <Nav className="ml-auto">
               <Nav.Item>
                 <Nav.Link onClick={() => onRouteChange("signout")}>
                   Sign out
                 </Nav.Link>
               </Nav.Item>
-            </Nav>
+            </Nav> */}
           </Navbar.Collapse>
         </Navbar>
       </Styles>

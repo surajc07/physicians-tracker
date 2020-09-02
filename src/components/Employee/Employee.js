@@ -22,7 +22,7 @@ class Employee extends Component {
   }
 
   componentDidMount = async () => {
-    axios.get(`http://localhost:5000/`).then((res) => {
+    axios.get(`http://localhost:5000/data`).then((res) => {
       const employees = res.data;
       this.setState({
         employees: employees.recordsets[0],
