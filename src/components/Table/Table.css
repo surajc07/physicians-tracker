@@ -2,3 +2,8 @@
 .table-hover tbody tr:hover th {
   background-color: grey;
 } */
+
+.table {
+  margin: auto;
+  width: 95% !important;
+}

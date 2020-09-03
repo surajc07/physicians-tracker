@@ -1,8 +1,18 @@
 var express = require("express");
 var app = express();
 const cors = require("cors");
+// const pino = require("express-pino-logger")();
+// const path = require("path");
 
 app.use(cors());
+// app.use(pino);
+
+// app.use(express.static(path.join(__dirname, "..", "build")));
+// app.use(express.static(path.join(__dirname, "..", "public")));
+
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 app.get("/", function (req, res) {
   var sql = require("mssql");

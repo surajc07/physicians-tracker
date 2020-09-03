@@ -9,6 +9,7 @@ import Signin from "../components/Signin/Signin";
 import Register from "../components/Register/Register";
 import Navigation from "../components/Navigation/Navigation";
 import { BrowserRouter as Router } from "react-router-dom";
+require("dotenv").config();
 
 class App extends Component {
   constructor() {

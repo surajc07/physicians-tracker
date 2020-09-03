@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CardList from "../Card/CardList";
 import SearchBox from "../SearchBox/SearchBox";
-import Scroll from "../Scroll/Scroll";
+// import Scroll from "../Scroll/Scroll";
 import NewEmployee from "../Employee/NewEmployee";
 import Table from "../Table/Table";
 import Pagination from "../Pagination/Pagination";
@@ -22,11 +22,10 @@ class Employee extends Component {
   }
 
   componentDidMount = async () => {
-    axios.get(`http://localhost:5000/data`).then((res) => {
-      const employees = res.data;
+    axios.get(process.env.REACT_APP_API_URL).then((res) => {
       this.setState({
-        employees: employees.recordsets[0],
-        holder: employees.recordsets[0],
+        employees: res.data.recordset,
+        holder: res.data.recordset,
       });
     });
   };
@@ -107,24 +106,21 @@ class Employee extends Component {
             </div>
           </div>
 
-          <Scroll>
-            <CardList
-              employees={filteredEmployees}
-              onDelete={this.handleDelete}
-              onRouteChange={onRouteChange}
-            />
-            <Table
-              employees={filteredEmployees}
-              onRouteChange={onRouteChange}
-            />
+          {/* <Scroll> */}
+          <CardList
+            employees={filteredEmployees}
+            onDelete={this.handleDelete}
+            onRouteChange={onRouteChange}
+          />
+          <Table employees={filteredEmployees} onRouteChange={onRouteChange} />
 
-            <Pagination
-              resultsPerPage={resultsPerPage}
-              totalResults={employees.length}
-              onPaginateChange={this.onPaginateChange}
-              currentPage={currentPage}
-            />
-          </Scroll>
+          <Pagination
+            resultsPerPage={resultsPerPage}
+            totalResults={employees.length}
+            onPaginateChange={this.onPaginateChange}
+            currentPage={currentPage}
+          />
+          {/* </Scroll> */}
         </div>
       </FadeIn>
     );
