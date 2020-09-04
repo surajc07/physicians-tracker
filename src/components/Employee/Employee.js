@@ -36,9 +36,15 @@ class Employee extends Component {
       //running this after setting the value in state because of async
       var updatedList = this.state.holder;
       updatedList = updatedList.filter((employee) => {
-        const fullName = employee.empFirstNm + " " + employee.empLastNm;
+        //Add any parameters here for the search filter
+        const searchFilter =
+          employee.empFirstNm +
+          " " +
+          employee.empLastNm +
+          (!!employee.empTaskName ? " " + employee.empTaskName : " ");
         return (
-          fullName.toLowerCase().search(this.state.value.toLowerCase()) !== -1
+          searchFilter.toLowerCase().search(this.state.value.toLowerCase()) !==
+          -1
         );
       });
       this.setState({ employees: updatedList, currentPage: 1 });
@@ -72,10 +78,44 @@ class Employee extends Component {
     );
 
     return !holder.length ? (
-      <div className="tc">
-        <h1>Loading</h1>
-        <Spinner animation="border" variant="danger" />
-      </div>
+      <FadeIn>
+        <div className="tc">
+          <h1>Loading</h1>
+          <Spinner animation="border" variant="danger" />
+        </div>
+      </FadeIn>
+    ) : !employees.length ? (
+      <FadeIn>
+        <div className="tc">
+          <div
+            className="
+          d-flex
+          justify-content-between
+          flex-wrap
+          flex-md-nowrap
+          align-items-center
+          pt-3
+          pb-2
+          mb-3
+          border-bottom"
+          >
+            <h1 className="display-2">Employees</h1>
+            <div
+              className="tr"
+              style={{
+                margin: "15px 0",
+              }}
+            >
+              <NewEmployee employees={employees} />
+              <SearchBox
+                onSearchChange={this.onSearchChange}
+                value={this.state.value}
+              />
+            </div>
+          </div>
+          <h1>No Results Found</h1>
+        </div>
+      </FadeIn>
     ) : (
       <FadeIn>
         <div className="tc">
