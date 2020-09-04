@@ -39,9 +39,9 @@ class Employee extends Component {
         //Add any parameters here for the search filter
         const searchFilter =
           employee.empFirstNm +
-          " " +
+          "|" +
           employee.empLastNm +
-          (!!employee.empTaskName ? " " + employee.empTaskName : " ");
+          (!!employee.empTaskName ? "|" + employee.empTaskName : "");
         return (
           searchFilter.toLowerCase().search(this.state.value.toLowerCase()) !==
           -1
