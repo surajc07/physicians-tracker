@@ -93,3 +93,15 @@
   font-weight: 600;
   color: #0062cc;
 }
+
+.Comment-header {
+  text-align: center;
+  background-color: var(--secondary);
+  padding: 30px;
+  color: white;
+  border-radius: 0.3rem;
+}
+
+.Comment-title {
+  font-size: 2em;
+}

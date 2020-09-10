@@ -12,7 +12,7 @@ class CardInfo extends Component {
   };
 
   render() {
-    const { employees } = this.props;
+    const { employees, onRouteChange } = this.props;
     if (Object.keys(employees).length) {
       return (
         <div>
@@ -47,7 +47,7 @@ class CardInfo extends Component {
                     }}
                     onClick={() => {
                       this.handleCardDetails(employees[i]);
-                      this.props.onRouteChange("detailinfo");
+                      onRouteChange("detailinfo");
                     }}
                   >
                     <div className="tc row">

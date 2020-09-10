@@ -1,58 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 import Comment from "./Comment";
-import NewComment from "./NewComment";
-import { comments } from "./comments";
-// add Comment
-// list all comments w/ status
-// each comment should track who wrote it
-class CommentList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      comments: comments,
-      id: 0,
-    };
-  }
+import Spinner from "react-bootstrap/Spinner";
 
-  //when it can be tied to a user change this code
-  // not the most efficient solution but it works
-  isUserComment = (comment, id) => {
-    if (comment.userId === id) {
-      return true;
-    }
-    return false;
-    /* was testing filtering
-    var rand = Math.floor(Math.random() * 2);
-    console.log(rand);
-    return rand;
-    */
-  };
-  render() {
-    var selectedCardId = localStorage.getItem("selectedCard");
-    //console.log("selectedCardId 2: ", JSON.parse(selectedCardId));
-    var cardObj = JSON.parse(selectedCardId);
-    return (
-      <div>
-        <div>
-          <NewComment />
+export default function CommentList(props) {
+  return (
+    <div className="commentList">
+      <h5 className="text-muted mb-4">
+        <span className="badge badge-success">{props.comments.length}</span>{" "}
+        Comment{props.comments.length > 0 ? "s" : ""}
+      </h5>
+
+      {!props.comments.length && props.loading ? (
+        <Spinner animation="border" variant="danger" className="tc" />
+      ) : props.comments.length === 0 && !props.loading ? (
+        <div className="alert text-center alert-info">
+          Be the first to comment
         </div>
-        {comments &&
-          comments.map((user, i) => {
-            if (this.isUserComment(comments[i], cardObj.id)) {
-              return (
-                <Comment
-                  key={i}
-                  id={comments[i].id}
-                  status={comments[i].status}
-                  comment={comments[i].comment}
-                  commentor={comments[i].commentor}
-                />
-              );
-            }
-          })}
-      </div>
-    );
-  }
+      ) : (
+        props.comments.map((comment, i) => (
+          <Comment key={i} comment={comment} />
+        ))
+      )}
+    </div>
+  );
 }
-
-export default CommentList;

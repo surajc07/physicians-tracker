@@ -13,6 +13,10 @@ class CardList extends Component {
     this.setState({ route });
   }
 
+  getEmployeeId = (employeeId) => {
+    this.setState({ employeeId });
+  };
+
   render() {
     const { employees, onDelete, onRouteChange } = this.props;
     return (

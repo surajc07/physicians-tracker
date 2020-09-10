@@ -1,10 +1,45 @@
 import React, { Component } from "react";
 import FadeIn from "react-fade-in";
 import "./DetailInfo.css";
-import CommentList from "../Comments/CommentList";
 import { Tabs, Tab } from "react-bootstrap";
+import CommentList from "../Comments/CommentList";
+import CommentForm from "../Comments/CommentForm";
+import axios from "axios";
 
 class DetailInfo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: [],
+      loading: false,
+    };
+    this.addComment = this.addComment.bind(this);
+  }
+
+  addComment(comment) {
+    console.log("addComment comment:", comment);
+    this.setState({
+      loading: false,
+      comments: [comment, ...this.state.comments],
+    });
+  }
+
+  componentDidMount = async () => {
+    var selectedCardId = localStorage.getItem("selectedCard");
+    var selectedCardObj = JSON.parse(selectedCardId);
+    // loading
+    this.setState({ loading: true });
+
+    await axios
+      .get(process.env.REACT_APP_API_COMMENTS + `?q=${selectedCardObj.empId}`)
+      .then((res) => {
+        this.setState({
+          comments: res.data,
+          loading: false,
+        });
+      });
+  };
+
   render() {
     var selectedCardId = localStorage.getItem("selectedCard");
     //console.log("selectedCardId 2: ", JSON.parse(selectedCardId));
@@ -138,8 +173,33 @@ class DetailInfo extends Component {
             </div>
           </form>
         </div>
-        <div className="tc shadow-5">
-          <CommentList />
+
+        <div className="container emp-profile bg-light shadow-5">
+          <header className="Comment-header">
+            <h1 className="Comment-title">
+              Comments
+              <span className="px-2" role="img" aria-label="Chat">
+                💬
+              </span>
+            </h1>
+          </header>
+
+          <div className="row">
+            <div className="col-4  pt-3 border-right">
+              <h6>Say something about this person</h6>
+              <CommentForm
+                addComment={this.addComment}
+                employeeId={selectedCardObj.empId}
+              />
+            </div>
+            <div className="col-8  pt-3 bg-white">
+              <CommentList
+                loading={this.state.loading}
+                comments={this.state.comments}
+                employeeId={selectedCardObj.empId}
+              />
+            </div>
+          </div>
         </div>
       </FadeIn>
     );

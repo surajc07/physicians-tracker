@@ -47,7 +47,6 @@ const Pagination = ({
           <a
             onClick={() => onPaginateChange("next")}
             href="!#"
-            tabIndex="-1"
             className="page-link grow shadow-5"
           >
             Next
