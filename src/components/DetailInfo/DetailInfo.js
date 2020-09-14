@@ -4,11 +4,12 @@ import "./DetailInfo.css";
 import { Tabs, Tab } from "react-bootstrap";
 import CommentList from "../Comments/CommentList";
 import CommentForm from "../Comments/CommentForm";
+import EditProfile from "../EditProfile/EditProfile";
 import axios from "axios";
 
 class DetailInfo extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       comments: [],
       loading: false,
@@ -17,7 +18,6 @@ class DetailInfo extends Component {
   }
 
   addComment(comment) {
-    console.log("addComment comment:", comment);
     this.setState({
       loading: false,
       comments: [comment, ...this.state.comments],
@@ -31,7 +31,10 @@ class DetailInfo extends Component {
     this.setState({ loading: true });
 
     await axios
-      .get(process.env.REACT_APP_API_COMMENTS + `?q=${selectedCardObj.empId}`)
+      .get(
+        process.env.REACT_APP_API_EMPLOYEES_COMMENTS +
+          `?q=${selectedCardObj.empId}`
+      )
       .then((res) => {
         this.setState({
           comments: res.data,
@@ -48,132 +51,122 @@ class DetailInfo extends Component {
     return (
       <FadeIn>
         <div className="container emp-profile shadow-5">
-          <form method="post">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="profile-img">
-                  <img
-                    src={`https://robohash.org/${selectedCardObj.empId}`}
-                    alt=""
-                  />
-                  <div className="file btn btn-lg btn-primary">
-                    Change Photo
-                    <input type="file" name="file" />
-                  </div>
-                </div>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="profile-img">
+                <img
+                  src={`https://robohash.org/${selectedCardObj.empId}`}
+                  alt=""
+                />
               </div>
-              <div className="col-md-6">
-                <div className="profile-head">
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <h5>
-                    {selectedCardObj.empFirstNm +
-                      " " +
-                      selectedCardObj.empLastNm}
-                  </h5>
-                  <h6>{selectedCardObj.empJobTitle}</h6>
+            </div>
+            <div className="col-md-6">
+              <div className="profile-head">
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <h5>
+                  {selectedCardObj.empFirstNm + " " + selectedCardObj.empLastNm}
+                </h5>
+                <h6>{selectedCardObj.empJobTitle}</h6>
 
-                  <div className="tab-wrapper">
-                    <div className="container-fluid">
-                      <div className="row">
-                        <div className="col-sm-12">
-                          <Tabs defaultActiveKey="about">
-                            <Tab eventKey="about" title="About">
-                              <div className="tab-item-wrapper">
-                                <h5>Home Dashbord</h5>
+                <div className="tab-wrapper">
+                  <div className="container-fluid">
+                    <div className="row">
+                      <div className="col-sm-12">
+                        <Tabs defaultActiveKey="about">
+                          <Tab eventKey="about" title="About">
+                            <div className="tab-item-wrapper">
+                              <h5>Profile Details</h5>
 
-                                <div className="row">
-                                  <div className="col-md-6">
-                                    <label>Party Id</label>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <p>{selectedCardObj.empPartySid}</p>
-                                  </div>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <label>Party Id</label>
                                 </div>
-                                <div className="row">
-                                  <div className="col-md-6">
-                                    <label>Name</label>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <p>
-                                      {selectedCardObj.empFirstNm +
-                                        " " +
-                                        selectedCardObj.empLastNm}
-                                    </p>
-                                  </div>
-                                </div>
-                                <div className="row">
-                                  <div className="col-md-6">
-                                    <label>Email</label>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <p>{selectedCardObj.empEmail}</p>
-                                  </div>
-                                </div>
-                                <div className="row">
-                                  <div className="col-md-6">
-                                    <label>Phone</label>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <p>{selectedCardObj.empCellPhone}</p>
-                                  </div>
-                                </div>
-                                <div className="row">
-                                  <div className="col-md-6">
-                                    <label>Profession</label>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <p>{selectedCardObj.empJobTitle}</p>
-                                  </div>
+                                <div className="col-md-6">
+                                  <p>{selectedCardObj.empPartySid}</p>
                                 </div>
                               </div>
-                            </Tab>
-
-                            <Tab eventKey="tasks" title="Tasks">
-                              <div className="tab-item-wrapper">
-                                <h5>Profile Details</h5>
-
-                                <div className="row">
-                                  <div className="col-md-6">
-                                    <label>Course</label>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <p>{selectedCardObj.empTaskName}</p>
-                                  </div>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <label>Name</label>
                                 </div>
-                                <div className="row">
-                                  <div className="col-md-6">
-                                    <label>Status</label>
-                                  </div>
-                                  <div className="col-md-6">
-                                    <p>{selectedCardObj.empTaskStatus}</p>
-                                  </div>
+                                <div className="col-md-6">
+                                  <p>
+                                    {selectedCardObj.empFirstNm +
+                                      " " +
+                                      selectedCardObj.empLastNm}
+                                  </p>
                                 </div>
                               </div>
-                            </Tab>
-                          </Tabs>
-                        </div>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <label>Email</label>
+                                </div>
+                                <div className="col-md-6">
+                                  <p>{selectedCardObj.empEmail}</p>
+                                </div>
+                              </div>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <label>Phone</label>
+                                </div>
+                                <div className="col-md-6">
+                                  <p>{selectedCardObj.empCellPhone}</p>
+                                </div>
+                              </div>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <label>Profession</label>
+                                </div>
+                                <div className="col-md-6">
+                                  <p>{selectedCardObj.empJobTitle}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </Tab>
+
+                          <Tab eventKey="tasks" title="Tasks">
+                            <div className="tab-item-wrapper">
+                              <h5>Task Details</h5>
+
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <label>Course</label>
+                                </div>
+                                <div className="col-md-6">
+                                  <p>{selectedCardObj.empTaskName}</p>
+                                </div>
+                              </div>
+                              <div className="row">
+                                <div className="col-md-6">
+                                  <label>Status</label>
+                                </div>
+                                <div className="col-md-6">
+                                  <p>{selectedCardObj.empTaskStatus}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </Tab>
+                        </Tabs>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col-md-2">
-                <input
-                  type="submit"
-                  className="profile-edit-btn"
-                  name="btnAddMore"
-                  value="Edit Profile"
-                />
-              </div>
             </div>
-          </form>
+            <div className="col-md-2">
+              <EditProfile
+                selectedCardObj={selectedCardObj}
+                profileType={"Employee"}
+              />
+            </div>
+          </div>
         </div>
-
+        {/* Comments Section */}
         <div className="container emp-profile bg-light shadow-5">
           <header className="Comment-header">
             <h1 className="Comment-title">

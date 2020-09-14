@@ -19,7 +19,7 @@ const Pagination = ({
         <li className={currentPage > 1 ? "page-item" : "page-item disabled"}>
           <a
             onClick={() => onPaginateChange("previous")}
-            href="!#"
+            href="/"
             tabIndex="-1"
             className="page-link grow shadow-5"
           >
@@ -30,7 +30,7 @@ const Pagination = ({
           <li key={number} className="page-item">
             <a
               onClick={() => onPaginateChange(number)}
-              href="!#"
+              href="/"
               className="page-link grow shadow-5"
             >
               {number}
@@ -46,7 +46,7 @@ const Pagination = ({
         >
           <a
             onClick={() => onPaginateChange("next")}
-            href="!#"
+            href="/"
             className="page-link grow shadow-5"
           >
             Next

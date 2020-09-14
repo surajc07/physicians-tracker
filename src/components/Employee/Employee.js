@@ -22,7 +22,7 @@ class Employee extends Component {
   }
 
   componentDidMount = async () => {
-    axios.get(process.env.REACT_APP_API_URL).then((res) => {
+    await axios.get(process.env.REACT_APP_API_EMPLOYEES).then((res) => {
       this.setState({
         employees: res.data.recordset,
         holder: res.data.recordset,
@@ -67,7 +67,6 @@ class Employee extends Component {
 
   render() {
     const { employees, currentPage, resultsPerPage, holder } = this.state;
-    const { onRouteChange } = this.props;
 
     //Get current employees
     const indexOfLastEmployee = currentPage * resultsPerPage;
@@ -147,13 +146,13 @@ class Employee extends Component {
           </div>
 
           {/* <Scroll> */}
-          <CardList
-            employees={filteredEmployees}
-            onDelete={this.handleDelete}
-            onRouteChange={onRouteChange}
-          />
-          <Table employees={filteredEmployees} onRouteChange={onRouteChange} />
-
+          <FadeIn>
+            <CardList
+              employees={filteredEmployees}
+              onDelete={this.handleDelete}
+            />
+            <Table employees={filteredEmployees} />
+          </FadeIn>
           <Pagination
             resultsPerPage={resultsPerPage}
             totalResults={employees.length}

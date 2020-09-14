@@ -8,11 +8,11 @@ class CardInfo extends Component {
   handleCardDetails = (employeeDetail) => {
     //console.log("employeeDetail: ", employeeDetail);
     localStorage.setItem("selectedCard", JSON.stringify(employeeDetail));
-    this.props.history.push(`/`);
+    this.props.history.push(`/detailinfo`);
   };
 
   render() {
-    const { employees, onRouteChange } = this.props;
+    const { employees } = this.props;
     if (Object.keys(employees).length) {
       return (
         <div>
@@ -47,7 +47,7 @@ class CardInfo extends Component {
                     }}
                     onClick={() => {
                       this.handleCardDetails(employees[i]);
-                      onRouteChange("detailinfo");
+                      // onRouteChange("detailinfo");
                     }}
                   >
                     <div className="tc row">

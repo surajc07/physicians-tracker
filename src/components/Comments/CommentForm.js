@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 
 export default class CommentForm extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       loading: false,
       error: "",
@@ -64,21 +64,21 @@ export default class CommentForm extends Component {
     comment.employeeId = selectedCardObj.empId;
 
     await axios
-      .post(process.env.REACT_APP_API_COMMENTS, { comment })
+      .post(process.env.REACT_APP_API_EMPLOYEES_COMMENTS, { comment })
       .then((res) => {
         // add time return from api and push comment to parent state
         comment.createdAt = res.data.createdAt;
         this.props.addComment(comment);
-
-        // clear the message box
+        // console.log("CommentForm comment: ", comment);
+        // Note: All params in comment need to be cleared here
         this.setState({
           loading: false,
-          comment: { ...comment, message: "", firstName: "" },
+          comment: { ...comment, message: "", firstName: "", createdAt: "" },
         });
       })
       .catch((err) => {
         this.setState({
-          error: "Something went wrong while submitting form. " + err,
+          error: "Something went wrong while submitting form: " + err,
           loading: false,
         });
       });

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { employees } from "./employees";
+import * as FaIcons from "react-icons/fa";
 
 class NewEmployee extends Component {
   constructor() {
@@ -58,8 +59,7 @@ class NewEmployee extends Component {
           className="btn btn-sm btn-info btn-rounded waves-effect grow bw2 shadow-5"
           onClick={() => this.handleModalShowHide()}
         >
-          <i className="fa fa-user-plus mr-1"></i>
-          New Employee
+          New Employee <FaIcons.FaUserPlus />
         </button>
 
         <Modal show={this.state.showHide} onHide={this.toggleModal}>
@@ -69,14 +69,14 @@ class NewEmployee extends Component {
               onClick={() => this.handleModalShowHide()}
             >
               <Modal.Title>
-                New Employee <i className="fa fa-poll-people"></i>
+                New Employee <FaIcons.FaUserFriends />
               </Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
               <Form.Group md="4" controlId="validation01">
                 <Form.Label>
-                  Name <i className="fa fa-user"></i>
+                  Name <FaIcons.FaUser />
                 </Form.Label>
 
                 <Form.Control
@@ -94,7 +94,7 @@ class NewEmployee extends Component {
               </Form.Group>
               <Form.Group md="4" controlId="validation02">
                 <Form.Label>
-                  Job Title <i className="fa fa-user-md"></i>
+                  Job Title <FaIcons.FaUserMd />
                 </Form.Label>
                 <Form.Control
                   type="text"
@@ -110,7 +110,7 @@ class NewEmployee extends Component {
               </Form.Group>
               <Form.Group md="4" controlId="validation03">
                 <Form.Label>
-                  Department <i className="fa fa-building"></i>
+                  Department <FaIcons.FaBuilding />
                 </Form.Label>
                 <Form.Control
                   type="text"
@@ -126,7 +126,7 @@ class NewEmployee extends Component {
               </Form.Group>
               <Form.Group md="4" controlId="validation04">
                 <Form.Label>
-                  Email <i className="fa fa-envelope-open"></i>{" "}
+                  Email <FaIcons.FaEnvelopeOpen />
                 </Form.Label>
                 <Form.Control
                   type="email"

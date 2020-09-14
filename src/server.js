@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 // const Sequelize = require("sequelize");
 const Employees = require("./models/employeesModel");
 const Comments = require("./models/commentsModel");
-const { response } = require("express");
 
 // const pino = require("express-pino-logger")();
 // const path = require("path");
@@ -29,7 +28,7 @@ app.use(bodyParser.json());
 //   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
 
-app.get("/", function (req, res) {
+app.get("/api/employees", function (req, res) {
   var sql = require("mssql");
 
   // config for your database
@@ -82,6 +81,7 @@ app.get("/api/comments", async (req, res, next) => {
 });
 // adds new comment for an employe on the detail info page
 app.post("/api/comments", async (req, res, next) => {
+  // console.log("server POST req: ", req);
   Comments.create({
     employeeId: req.body.comment.employeeId,
     lastName: req.body.comment.lastName,
@@ -90,10 +90,11 @@ app.post("/api/comments", async (req, res, next) => {
     createdAt: req.body.comment.createdAt,
   })
     .then((comment) => {
+      // console.log("comment: ", comment);
       if (comment) {
         res.json(comment);
       } else {
-        res.status(400).send("Error in insert new record");
+        res.status(400).send("Error in insert new comment record");
       }
     })
     .catch(next);
@@ -117,7 +118,7 @@ app.put("/api/employees/:employeeId", async (req, res, next) => {
       if (rowsUpdated) {
         res.json(rowsUpdated);
       } else {
-        res.status(400).send("Error in updating employee");
+        res.status(400).send("Error in updating employee record");
       }
     })
     .catch(next);

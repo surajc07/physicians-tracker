@@ -17,3 +17,14 @@ code {
 button {
   cursor: pointer;
 }
+
+/* Prevents page shifting to left when opening modals */
+.modal-open[style] {
+  padding-right: 0px !important;
+}
+.modal {
+  overflow-y: auto;
+}
+.modal-open {
+  overflow: auto;
+}

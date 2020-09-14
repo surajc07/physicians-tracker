@@ -5,10 +5,10 @@ import Employee from "../components/Employee/Employee";
 import Candidate from "../components/Candidate/Candidate";
 // import Layout from "../components/Navigation/Layout";
 import DetailInfo from "../components/DetailInfo/DetailInfo";
-import Signin from "../components/Signin/Signin";
-import Register from "../components/Register/Register";
-import Navigation from "../components/Navigation/Navigation";
-import { BrowserRouter as Router } from "react-router-dom";
+// import Signin from "../components/Signin/Signin";
+// import Register from "../components/Register/Register";
+import NavBar from "../components/Navigation/NavBar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 require("dotenv").config();
 
 class App extends Component {
@@ -21,44 +21,31 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
-    if (route === "signout") {
-      this.setState({ isSignedIn: false });
-    } else if (
-      route === "home" ||
-      route === "employee" ||
-      route === "candidate" ||
-      route === "detailinfo"
-    ) {
-      this.setState({ isSignedIn: true });
-    }
+    // if (route === "signout") {
+    //   this.setState({ isSignedIn: false });
+    // } else if (
+    //   route === "home" ||
+    //   route === "employee" ||
+    //   route === "candidate" ||
+    //   route === "detailinfo"
+    // ) {
+    //   this.setState({ isSignedIn: true });
+    // }
     this.setState({ route });
   };
 
   render() {
-    const { isSignedIn, route } = this.state;
     return (
-      <div className="appContainer">
-        <Navigation
-          isSignedIn={isSignedIn}
-          onRouteChange={this.onRouteChange}
-        />
-        {/* <Layout> */}
+      <div>
         <Router>
-          {route === "home" ? (
-            <Home />
-          ) : route === "employee" ? (
-            <Employee onRouteChange={this.onRouteChange} />
-          ) : route === "detailinfo" ? (
-            <DetailInfo />
-          ) : route === "candidate" ? (
-            <Candidate />
-          ) : route === "signin" || route === "signout" ? (
-            <Signin onRouteChange={this.onRouteChange} />
-          ) : (
-            <Register onRouteChange={this.onRouteChange} />
-          )}
+          <NavBar />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/employee" component={Employee} />
+            <Route path="/detailinfo" component={DetailInfo} />
+            <Route path="/candidate" component={Candidate} />
+          </Switch>
         </Router>
-        {/* </Layout> */}
       </div>
     );
   }

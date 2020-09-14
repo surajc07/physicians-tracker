@@ -11,6 +11,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "cors": "^2.8.5",
+    "create-react-class": "^15.6.3",
     "font-awesome": "^4.7.0",
     "moment": "^2.27.0",
     "mssql": "^6.2.1",
@@ -19,10 +20,10 @@
     "react-bootstrap-typeahead": "^5.1.1",
     "react-dom": "^16.13.1",
     "react-fade-in": "^1.1.0",
+    "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "sequelize": "^6.3.5",
-    "styled-components": "^5.1.1",
     "tachyons": "^4.12.0"
   },
   "scripts": {

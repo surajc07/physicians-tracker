@@ -1,4 +1,5 @@
 import React from "react";
+import "./Comment.css";
 
 export default function Comment(props) {
   const {
@@ -20,7 +21,7 @@ export default function Comment(props) {
         alt={employeeId}
       />
 
-      <div className="media-body p-2 shadow-sm rounded bg-light border">
+      <div className="commentContainer media-body p-2 shadow-sm rounded bg-light border">
         <small className="float-right text-muted">{createdAt}</small>
         <h6 className="mt-0 mb-1 text-muted">
           {firstName}&nbsp;{!!middleName ? middleName : ""}&nbsp;{lastName}

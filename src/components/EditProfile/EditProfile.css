@@ -1,0 +1,23 @@
+.edit-profile-img {
+  text-align: center;
+}
+.edit-profile-img img {
+  width: 50%;
+  height: 50%;
+}
+.edit-profile-img .edit-file {
+  position: relative;
+  overflow: hidden;
+  margin-top: -20%;
+  width: 70%;
+  border: none;
+  border-radius: 0;
+  font-size: 15px;
+  background: #212529b8;
+}
+.edit-profile-img .edit-file input {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}

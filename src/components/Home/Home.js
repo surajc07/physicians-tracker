@@ -1,12 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import FadeIn from "react-fade-in";
 
-const Home = () => {
-  return (
-    <FadeIn>
-      <div className="tc">
-        <div
-          className="
+class Home extends Component {
+  state = {};
+  render() {
+    return (
+      <FadeIn>
+        <div className="tc">
+          <div
+            className="
             d-flex
             justify-content-between
             flex-wrap
@@ -16,12 +18,13 @@ const Home = () => {
             pb-2
             mb-3
             border-bottom"
-        >
-          <h1 className="display-2">Home</h1>
+          >
+            <h1 className="display-2">Home</h1>
+          </div>
         </div>
-      </div>
-    </FadeIn>
-  );
-};
+      </FadeIn>
+    );
+  }
+}
 
 export default Home;

@@ -6,7 +6,7 @@ class Table extends Component {
   handleRowDetails = (employeeDetail) => {
     //console.log("employeeDetail: ", employeeDetail);
     localStorage.setItem("selectedCard", JSON.stringify(employeeDetail));
-    this.props.history.push(`/`);
+    this.props.history.push(`/detailinfo`);
   };
   render() {
     var { employees } = this.props;
@@ -36,7 +36,7 @@ class Table extends Component {
                   <tr
                     onClick={() => {
                       this.handleRowDetails(employees[i]);
-                      this.props.onRouteChange("detailinfo");
+                      // this.props.onRouteChange("detailinfo");
                     }}
                     style={{ cursor: "pointer" }}
                   >
