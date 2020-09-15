@@ -124,7 +124,17 @@ app.put("/api/employees/:employeeId", async (req, res, next) => {
     .catch(next);
 });
 
-const PORT = process.env.REACT_APP_API_PORT || 5000;
+app.set("env", "production");
+
+function isLocal() {
+  if (process.env.REACT_APP_RUNNING_LOCALLY === "true") {
+    return true;
+  } else return false;
+}
+var PORT = "80";
+console.log(app.get("env"));
+if (isLocal && app.get("env") === "development")
+  PORT = process.env.REACT_APP_API_PORT || 5000;
 
 app.set("port", PORT);
 
