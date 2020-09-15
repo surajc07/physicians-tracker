@@ -6,6 +6,10 @@ import CommentList from "../Comments/CommentList";
 import CommentForm from "../Comments/CommentForm";
 import EditProfile from "../EditProfile/EditProfile";
 import axios from "axios";
+require("dotenv").config();
+
+//Gets the environment from the .env file
+const environment = process.env.NODE_ENV;
 
 class DetailInfo extends Component {
   constructor() {
@@ -30,11 +34,14 @@ class DetailInfo extends Component {
     // loading
     this.setState({ loading: true });
 
+    var API_COMMENTS = "";
+    if (environment === "development")
+      API_COMMENTS = process.env.REACT_APP_DEV_API_EMPLOYEES_COMMENTS;
+    else if (environment === "production")
+      API_COMMENTS = process.env.REACT_APP_PROD_API_EMPLOYEES_COMMENTS;
+
     await axios
-      .get(
-        process.env.REACT_APP_API_EMPLOYEES_COMMENTS +
-          `?q=${selectedCardObj.empId}`
-      )
+      .get(API_COMMENTS + `?q=${selectedCardObj.empId}`)
       .then((res) => {
         this.setState({
           comments: res.data,

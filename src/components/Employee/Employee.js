@@ -8,6 +8,10 @@ import Pagination from "../Pagination/Pagination";
 import Spinner from "react-bootstrap/Spinner";
 import FadeIn from "react-fade-in";
 import axios from "axios";
+require("dotenv").config();
+
+//Gets the environment from the .env file
+const environment = process.env.NODE_ENV;
 
 class Employee extends Component {
   constructor() {
@@ -22,7 +26,13 @@ class Employee extends Component {
   }
 
   componentDidMount = async () => {
-    await axios.get(process.env.REACT_APP_API_EMPLOYEES).then((res) => {
+    var API_EMPLOYEES = "";
+    if (environment === "development")
+      API_EMPLOYEES = process.env.REACT_APP_DEV_API_EMPLOYEES;
+    else if (environment === "production")
+      API_EMPLOYEES = process.env.REACT_APP_PROD_API_EMPLOYEES;
+
+    await axios.get(API_EMPLOYEES).then((res) => {
       this.setState({
         employees: res.data.recordset,
         holder: res.data.recordset,

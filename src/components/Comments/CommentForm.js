@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+require("dotenv").config();
+
+//Gets the environment from the .env file
+const environment = process.env.NODE_ENV;
 
 export default class CommentForm extends Component {
   constructor() {
@@ -63,8 +67,14 @@ export default class CommentForm extends Component {
     let { comment } = this.state;
     comment.employeeId = selectedCardObj.empId;
 
+    var API_COMMENTS = "";
+    if (environment === "development")
+      API_COMMENTS = process.env.REACT_APP_DEV_API_EMPLOYEES_COMMENTS;
+    else if (environment === "production")
+      API_COMMENTS = process.env.REACT_APP_PROD_API_EMPLOYEES_COMMENTS;
+
     await axios
-      .post(process.env.REACT_APP_API_EMPLOYEES_COMMENTS, { comment })
+      .post(API_COMMENTS, { comment })
       .then((res) => {
         // add time return from api and push comment to parent state
         comment.createdAt = res.data.createdAt;
